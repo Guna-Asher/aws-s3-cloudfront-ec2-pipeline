@@ -31,7 +31,7 @@
 
 **Local:** `open index.html`
 
-**Deployed:** `https://your-bucket.s3.ap-south-2.amazonaws.com/` *(Update after first deploy)](https://ci-cd-practice-s3-bucket.s3.ap-south-2.amazonaws.com/index.html*
+**Deployed:** `https://ci-cd-practice-s3-bucket.s3.ap-south-2.amazonaws.com/index.html`
 
 ## 🎯 index.html Showcase
 
