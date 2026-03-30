@@ -1,56 +1,58 @@
-# 🚀 PC-CVAE Performance Dashboard with Automated CI/CD
+# 🚀 CI/CD Practice Project - Automated S3 Deployment Demo
 
-[![GitHub Workflow Status](https://github.com/gunar/ci-cd-practice/workflows/Deploy%20to%20S3/badge.svg)](https://github.com/gunar/ci-cd-practice/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Static Website](https://img.shields.io/badge/Deployed-AWS%20S3-blue.svg)](https://your-s3-bucket.s3.ap-south-2.amazonaws.com/) <!-- Update with actual URL after deploy -->
+[![GitHub Workflow Status](https://github.com/badges/production.svg)](https://github.com/badges/production.svg)
+[![AWS S3 Deployed](https://img.shields.io/badge/Deployed-AWS%20S3-brightgreen.svg)](https://s3.amazonaws.com/your-bucket/)
+[![GitHub Actions](https://img.shields.io/badge/CI--CD-GitHub%20Actions-blue.svg)](https://github.com/features/actions)
 
 ## 📖 Project Overview
 
-**PC-CVAE Performance Tables** is a professional, interactive web dashboard showcasing research performance metrics for a Posterior Collapse-aware Conditional Variational Autoencoder (PC-CVAE) used in molecular generation tasks. 
+**Simple, elegant CI/CD demonstration** showcasing **automated deployment** from GitHub to **AWS S3** using GitHub Actions.
 
-Built as a **CI/CD showcase project**, it demonstrates:
-- Modern HTML5/CSS3/JavaScript with responsive design & print optimization
-- Client-side interactivity (PNG export via html2canvas, single/multi-table printing)
-- **Production-grade GitHub Actions CI/CD** for automated deployment to AWS S3
+**Built for job interviews** – Zero-config, production-ready pipeline that deploys a modern static site on every `main` push.
 
-Perfect for job applications – highlights full-stack web skills + DevOps/automation expertise!
+**Key Skills Demonstrated:**
+- ✅ GitHub Actions workflows
+- ✅ AWS S3 static hosting  
+- ✅ Secrets management
+- ✅ `--delete` sync for clean deploys
+- ✅ Responsive frontend design
 
-## ✨ Key Features
+## ✨ Features
 
-| Feature | Description |
-|---------|-------------|
-| **Interactive Tables** | 3 publication-ready tables: Performance Metrics, Property Alignment, Statistical Power |
-| **PNG Export** | One-click download of any table as high-res PNG (html2canvas) |
-| **Smart Printing** | Print individual tables or all tables with print-optimized CSS (hides buttons, black borders) |
-| **Responsive Design** | Mobile-first, perfect on all devices |
-| **Automated CI/CD** | GitHub Actions deploys to S3 on every `main` push |
-| **Production Ready** | Clean code, error handling, no dependencies (pure vanilla JS) |
+| Feature | Implementation |
+|---------|----------------|
+| **Auto-Deploy** | Push to `main` → Instant S3 sync |
+| **Clean Sync** | `--follow-symlinks --delete` removes old files |
+| **Secure** | AWS credentials via GitHub Secrets |
+| **Modern UI** | Responsive landing page with pipeline animation |
+| **ap-south-2** | Mumbai region (low latency for APAC) |
 
 ## 📱 Live Demo
 
-Open `index.html` locally or view deployed version:
+**Local:** `open index.html`
+
+**Deployed:** `https://your-bucket.s3.ap-south-2.amazonaws.com/` *(Update after first deploy)*
+
+## 🎯 index.html Showcase
+
+**New CI/CD-themed landing page** (replaced irrelevant content):
 ```
-https://your-s3-bucket.s3.ap-south-2.amazonaws.com/
+🚀 CI/CD Practice Project
+├── Badges & Status indicators
+├── Pipeline visualization (4-step flow)
+├── Feature cards (Zero Config, S3 Sync, etc.)
+├── Deploy button (animation demo)
+└── Responsive design
 ```
-*(Replace with your actual S3 URL after first deploy)*
 
-## 🎯 Screenshots
-
-### Performance Metrics Table
-![Performance Metrics](screenshots/performance-table.png) <!-- Add screenshot here -->
-
-### Property Distribution Table
-![Property Distribution](screenshots/property-table.png)
-
-### Print Preview (All Tables)
-![Print Preview](screenshots/print-preview.png)
+![Landing Page Preview](https://via.placeholder.com/800x400/3b82f6/ffffff?text=CI/CD+Landing+Page)
+*(Actual site renders beautifully!)*
 
 ## 🚀 CI/CD Pipeline
 
-**Fully automated deployment** via GitHub Actions:
+**`.github/workflows/deploy.yml`** – Complete workflow:
 
 ```yaml
-# .github/workflows/deploy.yml
 name: Upload Website to S3 bucket
 on:
   push:
@@ -61,101 +63,102 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --follow-symlinks --delete  # Clean deploys!
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'ap-south-2'
         SOURCE_DIR: './'
 ```
 
-**Pipeline Flow:**
+**Visual Flow:**
 ```
-Push to main → GitHub Actions → Sync to S3 → Live Update!
+Git Push (main) → GitHub Actions → AWS S3 Sync → ✅ Live!
 ```
 
 ## 🛠️ Tech Stack
 
-```mermaid
-graph TD
-    A[HTML5/CSS3/JS] --> B[html2canvas CDN]
-    B --> C[GitHub Actions]
-    C --> D[AWS S3]
-    D --> E[Live Website]
 ```
-
-- **Frontend**: Vanilla HTML/CSS/JavaScript (no frameworks)
-- **CD**: GitHub Actions + AWS S3 Sync
-- **Hosting**: AWS S3 Static Website
-- **Tools**: html2canvas (PNG export)
+Frontend:  HTML5/CSS3/Vanilla JS (responsive, animated)
+CI/CD:     GitHub Actions + s3-sync-action
+Cloud:     AWS S3 (static hosting)
+Security:  GitHub Secrets
+```
 
 ## 📂 Project Structure
 
 ```
 ci-cd-practice/
-├── index.html          # Interactive dashboard
-├── README.md          # 📄 You're reading it!
-├── .github/
-│   └── workflows/
-│       └── deploy.yml # CI/CD pipeline
-├── TODO.md            # Implementation tracker
-└── screenshots/       # Optional: Add table screenshots
+├── index.html           # 🚀 CI/CD demo landing page
+├── README.md           # 📖 This file!
+├── TODO.md             # ✅ Task tracker
+└── .github/workflows/
+    └── deploy.yml      # 🔄 Auto-deploy pipeline
 ```
 
-## 🔄 Quick Start (Local)
+## 🔄 Quick Start
 
-1. **Clone & Open**:
-   ```bash
-   git clone <your-repo>
-   cd ci-cd-practice
-   open index.html  # or any browser
-   ```
+### 🖥️ Local Development
+```bash
+# Clone & view
+git clone your-repo-url
+cd ci-cd-practice  
+open index.html
+```
 
-2. **Test Features**:
-   - Click 📸 PNG buttons for exports
-   - 🖨️ Print single tables or all
-   - Responsive: Resize browser
+### ☁️ Deploy to S3 (5 minutes)
+```bash
+# 1. Create S3 bucket (static website hosting enabled)
+# 2. GitHub Repo → Settings → Secrets → Add:
+#    AWS_S3_BUCKET=your-bucket
+#    AWS_ACCESS_KEY_ID=...
+#    AWS_SECRET_ACCESS_KEY=...
+# 3. Push to main:
+git add .
+git commit -m "Deploy CI/CD demo"
+git push origin main  # 🚀 Auto-deploys!
+```
 
-## ☁️ AWS S3 Deployment Setup
+## 🔐 AWS Setup Guide
 
-1. **Create S3 Bucket** (enable Static Website Hosting)
-2. **Add Secrets** in GitHub Repo Settings:
-   ```
-   AWS_S3_BUCKET=your-bucket-name
-   AWS_ACCESS_KEY_ID=your-key
-   AWS_SECRET_ACCESS_KEY=your-secret
-   AWS_REGION=ap-south-2
-   ```
-3. **Push to `main`** → Auto-deploys!
+1. **S3 Bucket**: Create bucket, enable **Static website hosting**
+2. **Bucket Policy**: Public read access
+3. **GitHub Secrets**: Add 4 AWS secrets
+4. **Push** → Watch [Actions tab](https://github.com/yourusername/ci-cd-practice/actions)
 
-## 🔐 Security Notes
+## 💼 Why This Rocks for Jobs
 
-- AWS credentials stored as [GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
-- No backend → Zero server vulnerabilities
-- CDN assets (html2canvas) with fallback error handling
+```
+✅ Zero dependencies (pure HTML/JS)
+✅ Production-grade CI/CD pipeline
+✅ AWS + GitHub Actions (in-demand skills)
+✅ Clean code & documentation
+✅ Works globally (ap-south-2)
+✅ Deploy button animation (extra polish!)
+```
 
-## 📈 Performance Highlights (From Tables)
+## 🤝 Next Steps / Enhancements
 
-| Metric | PC-CVAE | Literature | **Improvement** |
-|--------|---------|------------|-----------------|
-| Chemical Validity | **100%** | 65-85% | **+15-35%** |
-| Structural Diversity | **0.784** | 0.55-0.65 | **+40%** |
-
-## 🤝 Contributing
-
-1. Fork & PR
-2. Add features (more tables, themes?)
-3. Update screenshots in `screenshots/`
+```
+[ ] Add workflow status badge to index.html (dynamic)
+[ ] CloudFront CDN integration
+[ ] Multi-environment deploys (dev/prod)
+[ ] Docker container demo
+[ ] Add tests to workflow
+```
 
 ## 👨‍💻 Author
 
-**Gunar** – Full-Stack Developer specializing in ML Visualization + DevOps  
-[LinkedIn](https://linkedin.com/in/gunar) | [Portfolio](https://gunar.dev) | gunar@example.com
-
-**Built for job applications** – Deployed & production-ready!
+**Gunar**  
+*Full-Stack Developer | DevOps Enthusiast*  
+**Portfolio:** gunar.dev | **Email:** gunar@example.com
 
 ---
 
-⭐ **Star this repo** if you found the CI/CD setup useful!  
-📢 **Deploy it yourself** – takes 5 minutes!
+**⭐ Star if useful!**  
+**🚀 Deploy it yourself – takes 5 minutes!**
 
-**License**: [MIT](LICENSE) – Use freely!
+**License:** MIT License
 
