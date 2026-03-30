@@ -90,7 +90,7 @@ Security:  GitHub Secrets
 ## 📂 Project Structure
 
 ```
-ci-cd-practice/
+aws-s3-cloudfront-ec2-pipeline/
 ├── index.html           # 🚀 CI/CD demo landing page
 ├── README.md           # 📖 This file!  
 └── .github/workflows/
@@ -102,7 +102,7 @@ ci-cd-practice/
 ### 🖥️ Local Development
 ```bash
 # Clone & view
-git clone your-repo-url
+git clone https://github.com/Guna-Asher/aws-s3-cloudfront-ec2-pipeline/tree/main
 cd ci-cd-practice  
 open index.html
 ```
@@ -125,7 +125,7 @@ git push origin main  # 🚀 Auto-deploys!
 1. **S3 Bucket**: Create bucket, enable **Static website hosting**
 2. **Bucket Policy**: Public read access
 3. **GitHub Secrets**: Add 4 AWS secrets
-4. **Push** → Watch [Actions tab](https://github.com/yourusername/ci-cd-practice/actions)
+4. **Push** → Watch [Actions tab](https://github.com/Guna-Asher/aws-s3-cloudfront-ec2-pipeline/tree/main/actions)
 
 ## 💼 Why This Rocks for Jobs
 
@@ -150,9 +150,9 @@ git push origin main  # 🚀 Auto-deploys!
 
 ## 👨‍💻 Author
 
-**Gunar**  
+**Guna_R**  
 *Full-Stack Developer | DevOps Enthusiast*  
-**Portfolio:** gunar.dev | **Email:** gunar@example.com
+**Portfolio:** gunar.dev | **Email:** gunardsce@gmail.com
 
 ---
 
