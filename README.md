@@ -31,7 +31,7 @@
 
 **Local:** `open index.html`
 
-**Deployed:** `https://your-bucket.s3.ap-south-2.amazonaws.com/` *(Update after first deploy)*
+**Deployed:** `https://your-bucket.s3.ap-south-2.amazonaws.com/` *(Update after first deploy)](https://ci-cd-practice-s3-bucket.s3.ap-south-2.amazonaws.com/index.html*
 
 ## 🎯 index.html Showcase
 
@@ -92,8 +92,7 @@ Security:  GitHub Secrets
 ```
 ci-cd-practice/
 ├── index.html           # 🚀 CI/CD demo landing page
-├── README.md           # 📖 This file!
-├── TODO.md             # ✅ Task tracker
+├── README.md           # 📖 This file!  
 └── .github/workflows/
     └── deploy.yml      # 🔄 Auto-deploy pipeline
 ```
