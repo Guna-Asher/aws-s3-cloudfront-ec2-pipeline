@@ -2,10 +2,309 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PC‑CVAE Performance Tables</title>
+    <!-- html2canvas for PNG export -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <style>
+        /* GLOBAL RESET & PRINT STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f2f2f2;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tables-container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            padding: 25px 20px 20px 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+        /* Table styling – exactly like the screenshots, but captions centered */
+        .research-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0 35px 0;
+            font-size: 15px;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+        }
+        .research-table caption {
+            text-align: center;          /* Centered title */
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            color: #1e2f3e;
+            caption-side: top;
+        }
+        .research-table th,
+        .research-table td {
+            border: 1px solid #aaa;
+            padding: 10px 12px;
+            vertical-align: top;
+        }
+        .research-table th {
+            background-color: #e9ecef;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.95em;
+        }
+        .research-table td {
+            text-align: center;
+        }
+        .research-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+            background-color: #fcfcfc;
+        }
+        /* Button panel */
+        .button-panel {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .btn {
+            background: #2c5a7a;
+            border: none;
+            color: white;
+            font-size: 0.85rem;
+            padding: 8px 18px;
+            margin: 5px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.2s;
+            display: inline-block;
+            font-family: inherit;
+        }
+        .btn:hover {
+            background: #1f405a;
+        }
+        .btn-light {
+            background: #4b6e8a;
+        }
+        .btn-light:hover {
+            background: #365670;
+        }
+        .print-only-btn {
+            background: #5f7d5c;
+        }
+        hr {
+            margin: 15px 0;
+            border: 0;
+            border-top: 1px solid #ccc;
+        }
+        /* Print styles: hide buttons, keep tables clean */
+        @media print {
+            body {
+                background: white;
+                padding: 0.2in;
+                margin: 0;
+            }
+            .tables-container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .button-panel, .btn, .print-hide {
+                display: none;
+            }
+            .research-table {
+                margin: 20px 0;
+                page-break-inside: avoid;
+            }
+            .research-table th, .research-table td {
+                border: 1px solid #000 !important;
+            }
+        }
+        /* responsive */
+        @media (max-width: 700px) {
+            .research-table th, .research-table td {
+                padding: 6px 8px;
+                font-size: 13px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World V2</h1>
+<div class="tables-container" id="printArea">
+    <!-- ===================== TABLE I ===================== -->
+    <table class="research-table" id="tableI">
+        <caption><strong>Performance Metrics Comparison</strong></caption>
+        <thead>
+            <tr><th>Metric</th><th>Our PC‑CVAE</th><th>Literature Range</th><th>Improvement</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Chemical Validity</td><td>100% (34/34)</td><td>65–85% [4], [10]</td><td>+15–35%</td></tr>
+            <tr><td>Novelty (Training)</td><td>90.3% (28/31)</td><td>60–75% [4], [11]</td><td>+15.3%</td></tr>
+            <tr><td>Novelty (PubChem)</td><td>58.1% (18/31)</td><td>40–60% [4]</td><td>+8.1%</td></tr>
+            <tr><td>Structural Diversity</td><td>0.784 Tanimoto</td><td>0.55–0.65 [4]</td><td>+40.3%</td></tr>
+        </tbody>
+    </table>
+    <div class="button-panel" id="btnPanel1">
+        <button class="btn download-png" data-table="tableI" data-filename="Performance_Metrics_Comparison.png">📸 Download as PNG</button>
+        <button class="btn btn-light print-single" data-card="tableI">🖨️ Print this table only</button>
+    </div>
+
+    <!-- ===================== TABLE II ===================== -->
+    <table class="research-table" id="tableII">
+        <caption><strong>Property Distribution Alignment</strong></caption>
+        <thead>
+            <tr><th>Property</th><th>Training Mean ± SD</th><th>Generated Mean ± SD</th><th>Cohen's d</th><th>p-value</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Molecular Weight</td><td>169.1 ± 45.0 g/mol</td><td>174.5 ± 37.2 g/mol</td><td>0.121</td><td>0.5026</td></tr>
+            <tr><td>LogP</td><td>2.47 ± 1.17</td><td>3.01 ± 1.18</td><td>0.466</td><td>0.0011</td></tr>
+            <tr><td>QED</td><td>0.534 ± 0.112</td><td>0.430 ± 0.105</td><td>0.925</td><td>&lt;0.001</td></tr>
+        </tbody>
+    </table>
+    <div class="button-panel" id="btnPanel2">
+        <button class="btn download-png" data-table="tableII" data-filename="Property_Distribution_Alignment.png">📸 Download as PNG</button>
+        <button class="btn btn-light print-single" data-card="tableII">🖨️ Print this table only</button>
+    </div>
+
+    <!-- ===================== TABLE III ===================== -->
+    <table class="research-table" id="tableIII">
+        <caption><strong>Statistical Power Analysis</strong></caption>
+        <thead>
+            <tr><th>Property</th><th>Effect Size (d)</th><th>Achieved Power</th><th>Required n (80% power)</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Molecular Weight</td><td>0.121</td><td>0.078</td><td>1,097</td></tr>
+            <tr><td>LogP</td><td>0.466</td><td>0.474</td><td>60</td></tr>
+            <tr><td>QED</td><td>0.925</td><td>0.964</td><td>22</td></tr>
+        </tbody>
+    </table>
+    <div class="button-panel" id="btnPanel3">
+        <button class="btn download-png" data-table="tableIII" data-filename="Statistical_Power_Analysis.png">📸 Download as PNG</button>
+        <button class="btn btn-light print-single" data-card="tableIII">🖨️ Print this table only</button>
+    </div>
+
+    <hr class="print-hide">
+    <div class="button-panel print-hide">
+        <button id="printAllBtn" class="btn print-only-btn" style="background:#3a6b4b;">🖨️ PRINT ALL THREE TABLES</button>
+    </div>
+    <div style="font-size: 12px; text-align: center; margin-top: 20px; color: #666;" class="print-hide">
+        ⚡ Use the buttons above to download each table as PNG or print individually.
+    </div>
+</div>
+
+<script>
+    (function() {
+        // Function to capture a given element and download as PNG
+        async function captureElementAsPNG(element, fileName) {
+            if (!element) {
+                console.error("Element not found");
+                return;
+            }
+            try {
+                const canvas = await html2canvas(element, {
+                    scale: 3,
+                    backgroundColor: '#ffffff',
+                    logging: false,
+                    useCORS: false
+                });
+                const link = document.createElement('a');
+                link.download = fileName;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } catch (err) {
+                console.error("PNG generation error:", err);
+                alert("Could not generate image. Check console or try again.");
+            }
+        }
+
+        // ---- Download PNG handlers ----
+        const downloadBtns = document.querySelectorAll('.download-png');
+        downloadBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tableId = btn.getAttribute('data-table');
+                const filename = btn.getAttribute('data-filename') || `${tableId}.png`;
+                const tableElement = document.getElementById(tableId);
+                if (tableElement) {
+                    captureElementAsPNG(tableElement, filename);
+                } else {
+                    alert(`Table with id "${tableId}" not found.`);
+                }
+            });
+        });
+
+        // ---- Print single table (opens new window) ----
+        const printSingleBtns = document.querySelectorAll('.print-single');
+        printSingleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const cardId = btn.getAttribute('data-card');
+                const tableElement = document.getElementById(cardId);
+                if (!tableElement) return;
+                
+                // Clone the table and its caption, plus any styling
+                const tableClone = tableElement.cloneNode(true);
+                const styleContent = document.querySelector('style').innerHTML;
+                const printWindow = window.open('', '_blank');
+                if (!printWindow) {
+                    alert("Please allow pop-ups to print.");
+                    return;
+                }
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>${tableElement.querySelector('caption')?.innerText || 'Table'}</title>
+                        <style>
+                            ${styleContent}
+                            body {
+                                background: white;
+                                padding: 20px;
+                                margin: 0;
+                                font-family: 'Segoe UI', Roboto, sans-serif;
+                            }
+                            .button-panel, .btn, .print-hide, hr, #printAllBtn, .download-png, .print-single {
+                                display: none !important;
+                            }
+                            .tables-container {
+                                padding: 0;
+                                margin: 0;
+                                max-width: 100%;
+                                box-shadow: none;
+                            }
+                            .research-table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin: 0;
+                            }
+                            .research-table th, .research-table td {
+                                border: 1px solid #000 !important;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="tables-container">
+                            ${tableClone.outerHTML}
+                        </div>
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                printWindow.print();
+            });
+        });
+
+        // ---- Print all tables (full page) ----
+        const printAllBtn = document.getElementById('printAllBtn');
+        if (printAllBtn) {
+            printAllBtn.addEventListener('click', () => {
+                window.print();
+            });
+        }
+    })();
+</script>
 </body>
 </html>
