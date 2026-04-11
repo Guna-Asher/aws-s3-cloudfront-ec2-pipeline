@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Production-ready CI/CD demo with GitHub Actions & AWS S3. Zero-config auto-deploy on push to main. Responsive landing page showcasing DevOps pipeline.">
+    <meta property="og:title" content="🚀 CI/CD Practice Project - AWS S3 Auto-Deploy">
+    <meta property="og:description" content="Automated deployment pipeline demo. Push to main → Live on S3 instantly!">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/3b82f6/ffffff?text=CI/CD+Pipeline+Demo">
+    <meta property="og:url" content="https://your-s3-bucket.s3.ap-south-2.amazonaws.com/">
     <title>CI/CD Practice - Automated S3 Deployment</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -92,6 +98,7 @@
             margin: 30px auto;
         }
         .deploy-btn:hover { background: #059669; transform: scale(1.05); }
+        .deploy-btn:focus { outline: 3px solid #3b82f6; outline-offset: 2px; }
         footer {
             background: #1f2937;
             color: #9ca3af;
@@ -112,8 +119,9 @@
             <h1>🚀 CI/CD Practice Project</h1>
             <p class="subtitle">Automated Deployment to AWS S3 with GitHub Actions</p>
             <div class="badges">
-                <span class="badge">✅ Production Ready</span>
+<span class="badge">✅ Production Ready</span>
                 <span class="badge">📦 GitHub Actions</span>
+                <span class="badge">![GitHub Workflow Status](https://github.com/Guna-Asher/aws-s3-cloudfront-ec2-pipeline/workflows/Upload%20Website%20to%20S3/badge.svg)</span>
                 <span class="badge">☁️ AWS S3</span>
             </div>
         </header>
@@ -167,15 +175,42 @@
         function simulateDeploy() {
             const btn = document.querySelector('.deploy-btn');
             const original = btn.innerHTML;
-            btn.innerHTML = 'Deploying... 🚀';
+            
+            // Simple confetti effect
+            function confetti() {
+                for (let i = 0; i < 50; i++) {
+                    const conf = document.createElement('div');
+                    conf.innerText = '🎉';
+                    conf.style.position = 'fixed';
+                    conf.style.left = Math.random() * 100 + 'vw';
+                    conf.style.top = '-10px';
+                    conf.style.fontSize = '20px';
+                    conf.style.pointerEvents = 'none';
+                    conf.style.zIndex = '9999';
+                    conf.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                    document.body.appendChild(conf);
+                    setTimeout(() => conf.remove(), 5000);
+                }
+            }
+            
+            // Add fall animation CSS dynamically
+            if (!document.getElementById('confetti-style')) {
+                const style = document.createElement('style');
+                style.id = 'confetti-style';
+                style.textContent = '@keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }';
+                document.head.appendChild(style);
+            }
+            
+            btn.innerHTML = 'Deploying... ⏳';
             btn.disabled = true;
             setTimeout(() => {
-                btn.innerHTML = '✅ Deployed Successfully!';
+                btn.innerHTML = '✅ Deployed Successfully! 🎉';
+                confetti();
                 setTimeout(() => {
                     btn.innerHTML = original;
                     btn.disabled = false;
-                }, 2000);
-            }, 2000);
+                }, 3000);
+            }, 1500);
         }
     </script>
 </body>

@@ -1,8 +1,9 @@
 # 🚀 CI/CD Practice Project - Automated S3 Deployment Demo
 
-[![GitHub Workflow Status](https://github.com/badges/production.svg)](https://github.com/badges/production.svg)
-[![AWS S3 Deployed](https://img.shields.io/badge/Deployed-AWS%20S3-brightgreen.svg)](https://s3.amazonaws.com/your-bucket/)
+[![GitHub Workflow Status](https://github.com/Guna-Asher/aws-s3-cloudfront-ec2-pipeline/workflows/Upload%20Website%20to%20S3/badge.svg)](https://github.com/Guna-Asher/aws-s3-cloudfront-ec2-pipeline/actions)
+[![AWS S3 Deployed](https://img.shields.io/badge/Deployed-AWS%20S3-brightgreen.svg)](https://ci-cd-practice-s3-bucket.s3.ap-south-2.amazonaws.com/index.html)
 [![GitHub Actions](https://img.shields.io/badge/CI--CD-GitHub%20Actions-blue.svg)](https://github.com/features/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 📖 Project Overview
 
@@ -21,11 +22,11 @@
 
 | Feature | Implementation |
 |---------|----------------|
-| **Auto-Deploy** | Push to `main` → Instant S3 sync |
-| **Clean Sync** | `--follow-symlinks --delete` removes old files |
-| **Secure** | AWS credentials via GitHub Secrets |
-| **Modern UI** | Responsive landing page with pipeline animation |
-| **ap-south-2** | Mumbai region (low latency for APAC) |
+| 🚀 **Auto-Deploy** | Push to `main` → Instant S3 sync |
+| 🧹 **Clean Sync** | `--follow-symlinks --delete` removes old files |
+| 🔒 **Secure** | AWS credentials via GitHub Secrets |
+| 🎨 **Modern UI** | Responsive landing page with pipeline animation & confetti! |
+| 🌍 **ap-south-2** | Mumbai region (low latency for APAC) |
 
 ## 📱 Live Demo
 
@@ -138,15 +139,16 @@ git push origin main  # 🚀 Auto-deploys!
 ✅ Deploy button animation (extra polish!)
 ```
 
-## 🤝 Next Steps / Enhancements
+## 🤝 Contributing
 
-```
-[ ] Add workflow status badge to index.html (dynamic)
-[ ] CloudFront CDN integration
-[ ] Multi-environment deploys (dev/prod)
-[ ] Docker container demo
-[ ] Add tests to workflow
-```
+Contributions welcome! Fork and submit PRs for:
+- CloudFront CDN
+- Multi-env deploys
+- Tests
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) for details.
 
 ## 👨‍💻 Author
 
