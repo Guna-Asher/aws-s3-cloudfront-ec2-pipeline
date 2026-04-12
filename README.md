@@ -103,7 +103,7 @@ aws-s3-cloudfront-ec2-pipeline/
 ### 🖥️ Local Development
 ```bash
 # Clone & view
-git clone https://github.com/Guna-Asher/aws-s3-cloudfront-ec2-pipeline/tree/main
+git clone https://github.com/Guna-Asher/aws-s3-cloudfront-ec2-pipeline
 cd ci-cd-practice  
 open index.html
 ```
